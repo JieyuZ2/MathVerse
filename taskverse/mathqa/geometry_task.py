@@ -5,6 +5,7 @@ from tqdm import tqdm
 
 from ..base import TaskGenerator
 from ..task_store import TaskStore
+from utils import PERI_SIDE_ONE_RANGE, PERI_SIDE_TWO_RANGE, PERI_SIDE_THREE_RANGE
 
 class GeoPlanGenerator(TaskGenerator):
     def __init__(self, metadata={}, seed=42):
@@ -56,6 +57,9 @@ class PerimeterGenerator(GeoPlanGenerator):
 
     def __init__(self, seed=42):
         super.__init__(seed=seed)
+        self.side_one_range = PERI_SIDE_ONE_RANGE
+        self.side_two_range = PERI_SIDE_TWO_RANGE
+        self.side_two_range = PERI_SIDE_THREE_RANGE
 
     def enumerate_task_plans(self, task_store: TaskStore):
         return super().enumerate_task_plans(task_store)
