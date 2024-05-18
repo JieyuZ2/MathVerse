@@ -50,8 +50,8 @@ class PerimeterGenerator(GeoPlanGenerator):
         'question_template' : 'str',
         'side_one'          : 'float',
         'side_two'          : 'float',
-        'side_three'        : 'float',
-        'solution'          : 'float',
+        'side_three'        : 'float's
+        # 'solution'          : 'float',
     }
 
     def __init__(self, seed=42):

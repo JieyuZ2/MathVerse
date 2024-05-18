@@ -1,0 +1,13 @@
+{
+    "template1" : "What is the perimeter of an iscoceles triangle of side length {param1} and hypotonus {param2}?",
+
+    "template2" : "What is the perimeter of a triangle with side lengths {param1}, {param2}, and {param3}?",
+
+    "template3" : "What is the perimeter of an equilateral triangle with side length {param1}?",
+
+    "template4" : "If we have a triangle with side lengths {param1}, {param2}, and {param3}. What is its perimeter?",
+
+    "template5" : "If we have an iscoceles triangle with side length {param1} and hypotonus {param2}. What is its perimeter?",
+
+    "template6" : "If we have an equilateral triangle with side length {param2}. What is its perimeter?"
+}
