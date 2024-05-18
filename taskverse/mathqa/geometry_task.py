@@ -50,7 +50,7 @@ class PerimeterGenerator(GeoPlanGenerator):
         'question_template' : 'str',
         'side_one'          : 'float',
         'side_two'          : 'float',
-        'side_three'        : 'float's
+        'side_three'        : 'float'
         # 'solution'          : 'float',
     }
 
