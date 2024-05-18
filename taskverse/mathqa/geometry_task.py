@@ -5,7 +5,9 @@ from tqdm import tqdm
 
 from ..base import TaskGenerator
 from ..task_store import TaskStore
-from utils import PERI_SIDE_ONE_RANGE, PERI_SIDE_TWO_RANGE, PERI_SIDE_THREE_RANGE
+from utils import *
+# PERI_SIDE_ONE_RANGE, PERI_SIDE_TWO_RANGE, PERI_SIDE_THREE_RANGE, 
+#     make_single_prod, make_pair_prod, make_triplet_prod
 
 class GeoPlanGenerator(TaskGenerator):
     def __init__(self, metadata={}, seed=42):
@@ -25,8 +27,9 @@ class GeoPlanGenerator(TaskGenerator):
         question, answer, options, image_metadata = self._generate_task(task_plan)
 
         task = {
-            'question' : question.replace('_', ' '),
-            'answer'   : answer.replace('_', ' '),
+            'question'  : question.replace('_', ' '),
+            'answer'    : answer.replace('_', ' '),
+            'task_plan' : self._task_plan_to_str(task_plan)
             
         }
 
@@ -59,9 +62,14 @@ class PerimeterGenerator(GeoPlanGenerator):
         super.__init__(seed=seed)
         self.side_one_range = PERI_SIDE_ONE_RANGE
         self.side_two_range = PERI_SIDE_TWO_RANGE
-        self.side_two_range = PERI_SIDE_THREE_RANGE
+        self.side_three_range = PERI_SIDE_THREE_RANGE
 
     def enumerate_task_plans(self, task_store: TaskStore):
+        single = make_single_prod(side_one_range)
+        pairs = make_pair_prod(side_one_range, side_three_range)
+        triplets = make_triplet_prod(side_one_range, side_two_range, side_three_range)
+        
+        
         return super().enumerate_task_plans(task_store)
     
     def _generate_task(self, task_plan) -> Tuple[str | List[str] | Dict]:

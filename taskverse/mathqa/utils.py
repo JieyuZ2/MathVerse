@@ -3,12 +3,34 @@ import random
 import numpy as np
 # from PIL import Image
 
-PERI_SIDE_ONE_RANGE = (1, 20)
-PERI_SIDE_TWO_RANGE = (1, 20)
-PERI_SIDE_THREE_RANGE = (1, 20)
+PERI_SIDE_ONE_RANGE = (1.0, 20.0)
+PERI_SIDE_TWO_RANGE = (1.0, 20.0)
+PERI_SIDE_THREE_RANGE = (1.0, 20.0)
+
+def make_single_prod(side_one_range):
+    singles = list(np.linspace(side_one_range[0], side_one_range[1], num=100))
+    
+    singles = [(x, None, None) for x in singles]
+    
+    return singles
 
 def make_pair_prod(side_one_range, side_two_range):
-    pass
+    side_one = np.linspace(side_one_range[0], side_one_range[1], num=100)
+    side_two = np.linspace(side_two_range[0], side_two_range[1], num=100)
+    
+    # Generate all possible pairwise combinations
+    pairs = list(product(side_one, side_two))
+    pairs = [(x, y, None) for x, y in pairs]
+    
+    return pairs
+
 
 def make_triplet_prod(side_one_range, side_two_range. side_three_range):
-    pass
+    side_one = np.linspace(side_one_range[0], side_one_range[1], num=100)
+    side_two = np.linspace(side_two_range[0], side_two_range[1], num=100)
+    side_three = np.linspace(side_three_range[0], side_three_range[1], num=100)
+    
+    # Generate all possible triplets
+    triplets = list(product(side_one, side_two, side_three))
+    
+    return triplets
