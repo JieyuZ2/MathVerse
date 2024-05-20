@@ -33,12 +33,13 @@ class GeoPlanGenerator(TaskGenerator):
         if seed is not None:
             self.rng = np.random.default_rng(seed=seed)
 
-        question, answer, options, image_metadata = self._generate_task(task_plan)
+        question, answer, math_metadata = self._generate_task(task_plan)
 
         task = {
             'question'  : question.replace('_', ' '),
             'answer'    : answer.replace('_', ' '),
-            'task_plan' : self._task_plan_to_str(task_plan)
+            'task_plan' : self._task_plan_to_str(task_plan),
+            'math_metadata' : math_metadata,
             
         }
 
@@ -88,7 +89,30 @@ class PerimeterGenerator(GeoPlanGenerator):
                 
             
     def _generate_task(self, task_plan) -> Tuple[str | List[str] | Dict]:
-        pass
+        question = None
+        answer = None
+
+        template = task_plan['question_template']
+        side_one = task_plan['side_one']
+        side_two = task_plan['side_two']
+        side_three = task_plan['side_three']
+        # question = template.format(meta_data information)
+        # question generation depends on the number of parameters
+
+        if side_two is None:
+            question = template.format(side_one) # format is single param
+            answer = 3 * side_one
+            
+        elif side_three is None:
+            question = template.format(side_one, side_two) # format is double param
+            answer = 2 * side_one + side_two
+        
+        else:
+            question = template.format(side_one, side_two, side_three) # format is triple param
+            answer = side_one + side_two + side_three
+            
+
+        return question, answer, self.metadata
     
 # class AreaGenerator(GeoPlanGenerator):
 #     schema = {
