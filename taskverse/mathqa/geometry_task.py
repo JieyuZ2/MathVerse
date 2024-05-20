@@ -96,8 +96,6 @@ class PerimeterGenerator(GeoPlanGenerator):
         side_one = task_plan['side_one']
         side_two = task_plan['side_two']
         side_three = task_plan['side_three']
-        # question = template.format(meta_data information)
-        # question generation depends on the number of parameters
 
         if side_two is None:
             question = template.format(side_one) # format is single param
